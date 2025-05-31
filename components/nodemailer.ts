@@ -54,7 +54,7 @@ export const Sendemail = async ({ email, emailType, id }: sendMailTypes) => {
             to: email,
             subject: actionText,
             html: `
-                <p>Click <a href="${domain}/${urlPath}?token=${token}">
+                <p>Click <a href="${domain}/${urlPath}?token=${hashedToken}">
                 HERE</a> to ${actionText}</p>
             `,
         };

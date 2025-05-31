@@ -47,6 +47,8 @@ export async function POST(req: NextRequest) {
                 id: newUser.id,
                 email: newUser.email,
                 username: newUser.username,
+                verified: newUser.verifytoken
+
             },
         });
     } catch (error: any) {

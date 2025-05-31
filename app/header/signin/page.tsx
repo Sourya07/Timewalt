@@ -2,15 +2,16 @@
 
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function SignupSigninCard() {
     const [formData, setFormData] = useState({
-        name: "",
+        username: "",
         email: "",
         password: "",
     });
 
-    const [isSignup, setIsSignup] = useState(true); // toggle for signup/signin
+    const [isSignup, setIsSignup] = useState(true);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData((prev) => ({
@@ -29,8 +30,10 @@ export default function SignupSigninCard() {
         try {
             const res = await axios.post(`http://localhost:3000${endpoint}`, payload);
             console.log(`${isSignup ? "Signup" : "Signin"} success:`, res.data);
+            toast.success(`${isSignup ? "Signup" : "Signin"} successful!`);
         } catch (err: any) {
             console.error(`${isSignup ? "Signup" : "Signin"} failed:`, err.response?.data || err.message);
+            toast.error(err.response?.data?.message || "Something went wrong");
         }
     };
 
@@ -45,10 +48,10 @@ export default function SignupSigninCard() {
                     {isSignup && (
                         <input
                             type="text"
-                            name="name"
+                            name="username"
                             placeholder="Name"
                             className="w-full p-3 rounded bg-white/60 placeholder-gray-700"
-                            value={formData.name}
+                            value={formData.username}
                             onChange={handleChange}
                             required
                         />
