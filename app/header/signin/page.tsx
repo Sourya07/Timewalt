@@ -28,7 +28,7 @@ export default function SignupSigninCard() {
             : { email: formData.email, password: formData.password };
 
         try {
-            const res = await axios.post(`http://localhost:3000${endpoint}`, payload);
+            const res = await axios.post(`${process.env.DOMAIN}${endpoint}`, payload);
             console.log(`${isSignup ? "Signup" : "Signin"} success:`, res.data);
             toast.success(`${isSignup ? "Signup" : "Signin"} successful!`);
         } catch (err: any) {
