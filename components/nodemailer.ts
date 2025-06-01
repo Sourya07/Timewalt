@@ -105,10 +105,14 @@ export const Sendemail = async ({ email, emailType, id }: sendMailTypes) => {
             data: updateData,
         });
 
+
+
         // Use unhashed token in URL, but hashed token is stored in DB for security
         const domain = process.env.NEXT_PUBLIC_DOMAIN || 'http://localhost:3000'; // fallback for dev
         const urlPath = emailType === 'VERIFY' ? 'verifyemail' : 'resetpassword';
         const actionText = emailType === 'VERIFY' ? 'Verify Your Email' : 'Reset Your Password';
+
+        console.log("SENDGRID_API_KEY is set:", !!process.env.SENDGRID_API_KEY);
 
         const msg = {
             to: email,
